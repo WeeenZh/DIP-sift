@@ -1,39 +1,77 @@
-功能：
--识别交通标识牌
--商标识别
+Features:
 
-流程：
--通过标识牌的红色圆周检测标识牌的位置
--提取标识牌的主要标识
--提取主要表示的特征点
--与数据集中的标准标识特征点进行匹配
--比较各个标准标识的匹配的平均距离
--最近的作为场景中标识牌的识别结果
+- Identify traffic signs
 
-代码：
--设置bgr颜色空间阈值，分离显示红色像素，底色黑色
--图像平滑处理
--hough 圆检测
--如果有圆，进入场景1，标识牌识别
--遍历所有圆，剪裁圆内矩形roi（感兴趣的区域）
--提取roi内的特征点（SURF Detector）
--计算roi内特征点与标准标识的匹配（FLANN matcher）
--距离小于max_dist - (max_dist - min_dist) / 1.30的添加到good_matches（优等匹配）
--计算所有匹配的平均距离
--遍历圆结束，平均距离最小的定为最相似的物体
+- Trademark identification
+
+
+
+Process:
+
+- The position of the identification card is detected by the red circle of the signage
+
+- Extract the primary logo of the tag
+
+- extract the main feature points
+
+- matches the standard identity feature points in the data set
+
+- Compare the average distance of matching for each standard logo
+
+- the most recent recognition result as a sign in the scene
+
+
+
+Code:
+
+- set bgr color space threshold, separate display red pixels, background black
+
+- Image smoothing
+
+-hough circle detection
+
+- if there is a circle, enter scene 1, sign recognition
+
+- traverse all circles, cut circle inside the rectangle roi (region of interest)
+
+- Extract the feature points within the roi (SURF Detector)
+
+- Calculate the matching of the feature points within the roi with the standard identity (FLANN matcher)
+
+- distance less than max_dist - (max_dist - min_dist) / 1.30 added to good_matches (excellent match)
+
+- Calculate the average distance for all matches
+
+- the end of the circle, the average distance of the smallest as the most similar objects
+
 -
--如果没有圆，场景2，商标识别
--大题同场景1，将整幅图像作为roi
--计算出最相似的物体
--计算变换矩阵（findHomography）
--绘制连接变换矩阵各个角点（一个矩形框，框出匹配的标识
--结束返回
+
+- if there is no circle, scene 2, logo recognition
+
+- big problem with the scene 1, the whole image as roi
+
+- Calculate the most similar objects
+
+- Computational transformation matrix (findHomography)
+
+- Draws the connection transformation matrix at each corner (a rectangular box that lists the matching logo
+
+- End the return
 
 
-需要做的：
-添加标准标识到数据集中：obj_xxx.jpg
-制作交通标识场景：将标识牌ps到复杂的背景中
+
+
+
+Need to do:
+
+Add a standard identifier to the data set: obj_xxx.jpg
+
+Make traffic logo scene: the logo ps to the complex background
+
+
 
 12-21
-进展：
--添加了商标识别，定位
+
+progress:
+
+- Added logo recognition, positioning
